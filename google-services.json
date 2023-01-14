@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "609710231118",
+    "project_id": "zoo-app-adb4d",
+    "storage_bucket": "zoo-app-adb4d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:609710231118:android:80ff6eb4f0647696eafd1f",
+        "android_client_info": {
+          "package_name": "com.desuntechnology.ZooApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "609710231118-1ig2o9e1dj2d25n4ik4kog4l2e96gqji.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsRt9hbV0wDhFbHPL02Px93f6GCh2h5Sg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "609710231118-1ig2o9e1dj2d25n4ik4kog4l2e96gqji.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

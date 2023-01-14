@@ -1,0 +1,12 @@
+export { default as enclousreIcon } from "./enclousre-mgmt.png";
+export { default as medicalIcon } from "./medical.webp";
+export { default as incidentReportIcon } from "./incidentReport.webp";
+export { default as feedIcon } from "./feed-mgmt.jpg";
+export { default as taskIcon } from "./daily-task-reports.png";
+export { default as sectionIcon } from "./section-image.png";
+export { default as printerIcon } from "./printer.png";
+export { default as observationIcon } from "./observation.png";
+export { default as tagIcon } from "./tag.png";
+// export { default as enclousreIcon } from "./enclousre-mgmt.png";
+// export { default as enclousreIcon } from "./enclousre-mgmt.png";
+// export { default as enclousreIcon } from "./enclousre-mgmt.png";

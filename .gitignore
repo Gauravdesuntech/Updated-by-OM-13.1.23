@@ -1,0 +1,15 @@
+node_modules/**/*
+.expo/*
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+animalcaredev.zip
+animalcaredev(solvedqr).zip
+
+# macOS
+.DS_Store

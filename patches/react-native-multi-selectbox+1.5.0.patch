@@ -1,0 +1,39 @@
+diff --git a/node_modules/react-native-multi-selectbox/index.js b/node_modules/react-native-multi-selectbox/index.js
+index 665fba2..e11fc1a 100644
+--- a/node_modules/react-native-multi-selectbox/index.js
++++ b/node_modules/react-native-multi-selectbox/index.js
+@@ -7,7 +7,7 @@ import Toggle from './src/components/Toggle'
+ 
+ const hitSlop = { top: 14, bottom: 14, left: 14, right: 14 }
+ 
+-const kOptionsHeight = { width: '100%', maxHeight: 180 }
++const kOptionsHeight = { width: '100%', maxHeight: 480 }
+ 
+ const kOptionListViewStyle = {
+   width: '100%',
+@@ -32,7 +32,7 @@ function SelectBox({
+ }) {
+   const [inputValue, setInputValue] = useState('')
+ 
+-  const [showOptions, setShowOptions] = useState(false)
++  const [showOptions, setShowOptions] = useState(true)
+ 
+   function renderLabel(item) {
+     const kOptionsLabelStyle = {
+@@ -87,7 +87,7 @@ function SelectBox({
+ 
+     function onPressItem() {
+       return (e) => {
+-        setShowOptions(false)
++        setShowOptions(!showOptions)
+         return onChange ? onChange(item) : null
+       }
+     }
+@@ -193,6 +193,7 @@ function SelectBox({
+     paddingTop: 6,
+     paddingRight: 20,
+     paddingBottom: 8,
++    marginTop: 10,
+     ...containerStyle,
+   }
+ 

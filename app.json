@@ -1,0 +1,71 @@
+{
+  "expo": {
+    "name": "Zoo Manage",
+    "slug": "animalcaremanage",
+    "owner": "desuntechnology",
+    "version": "2.0.8",
+    "orientation": "portrait",
+    "scheme": "animalcare",
+    "icon": "./assets/appicon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#01c796"
+    },
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/appicon.png",
+          "color": "#ffffff",
+          "sounds": [
+            "./assets/message.wav"
+          ]
+        }
+      ]
+    ],
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.desuntechnology.ZooApp"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.desuntechnology.ZooApp",
+      "permissions": [
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "INTERNET",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "FOREGROUND_SERVICE"
+      ],
+      "googleServicesFile": "./google-services.json",
+      "useNextNotificationsApi": true,
+      "versionCode": 1
+    },
+    "notification": {
+      "icon": "./assets/pn-zoo-icon.png",
+      "color": "#ffffff",
+      "iosDisplayInForeground": true,
+      "androidMode": "default"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "description": "",
+    "extra": {
+      "eas": {
+        "projectId": "05427ae7-42b8-48c3-852d-c772555520bd"
+      }
+    }
+  }
+}
