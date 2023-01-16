@@ -2,7 +2,7 @@
 // Created on 12/01/2023
 
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TextInput } from 'react-native';
+import { StyleSheet, View, Text, TextInput ,TouchableOpacity} from 'react-native';
 import Colors from "../../config/colors";
 import styles from "../../config/Styles";
 import { InputDropdown } from "../../component";
@@ -10,6 +10,9 @@ import { Configs } from '../../config';
 const SourceDetail = () => {
     const [sourceDetail, setSourceDetail] = useState("");
     const [isSourceDetailTypeMenuOpen, setIsSourceDetailTypeMenuOpen] = useState(false);
+    const[remarks,setRemarks]=useState('');
+
+
     const HandleSetSourceDetailType = (v) => {
         setSourceDetail(v.name);
         setIsSourceDetailTypeMenuOpen(false);
@@ -43,7 +46,7 @@ const SourceDetail = () => {
                         </View>
                         <View style={style.inputContainer}>
                             <Text style={style.labels}>Condition  while it was Found  :</Text>
-                            <TextInput style={style.inputstyle} autoCapitalize='none'></TextInput>
+                            <TextInput style={style.inputstyles} autoCapitalize='none'></TextInput>
                         </View>
                     </>
                     :
@@ -73,9 +76,19 @@ const SourceDetail = () => {
                 </View>
                 <View style={style.inputContainer}>
                     <Text style={style.labels}>Remarks  :</Text>
-                    <TextInput style={style.inputstyle} autoCapitalize='none'></TextInput>
+                    <TextInput style={style.inputstyle} autoCapitalize='none' value={remarks} onChangeText={(Text)=>setRemarks(Text)}></TextInput>
                 </View>
             </View>
+            <TouchableOpacity
+                    style={[style.SaveBtn, { width: "40%" }]}
+                >
+                    <Text style={{ color: Colors.white, fontSize: Colors.lableSize, }} >Save</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={[style.CancelBtn, { width: "40%" }]}
+                >
+                    <Text style={{ color: Colors.white, fontSize: Colors.lableSize, }} >Cancel</Text>
+                </TouchableOpacity>
 
         </>
 
@@ -111,27 +124,42 @@ const style = StyleSheet.create({
         left: 0,
         padding: 7,
         paddingLeft: 130,
-        fontWeight: "bold",
         width: "100%",
         borderWidth: 0.8,
         borderColor: "#ddd",
     },
-    // ionicons: {
-    //     position: "relative",
-    //     top: 2,
-    //     right: 180,
-    // },
-    // Table_container: {
-    //     height: "auto",
-    //     width:"100%",
-    //     textAlign:"center",
-    //     position: "relative",
-    //     bottom: 0,
-    //     left: 2,
-    // },
-    // tableHeader: {
-    //     backgroundColor: '#DCDCDC',
-    // },
+    inputstyles:{
+        position: "relative",
+        top: -1,
+        left: 0,
+        padding: 7,
+        paddingLeft: 220,
+        width: "100%",
+        borderWidth: 0.8,
+        borderColor: "#ddd",
+    },
+    SaveBtn: {
+        position:"relative",
+        top:145,
+        left:15,
+        alignItems: "center",
+        backgroundColor: Colors.primary,
+        padding: 10,
+        borderRadius: 20,
+        color: "#fff",
+        marginTop: 15,
+      },
+      CancelBtn: {
+        position:"relative",
+        top:90,
+        left:180,
+        alignItems: "center",
+        backgroundColor: Colors.primary,
+        padding: 10,
+        borderRadius: 20,
+        color: "#fff",
+        marginTop: 15,
+      },
 })
 
 export default SourceDetail;

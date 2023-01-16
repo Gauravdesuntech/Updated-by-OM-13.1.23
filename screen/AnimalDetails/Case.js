@@ -174,7 +174,7 @@ const Case = () => {
                 <View>
                     <View style={style.inputContainer}>
                         <Text style={style.labels}>Entity ID  :</Text>
-                        <TextInput style={style.inputstyle} autoCapitalize='none'></TextInput>
+                        <TextInput style={style.EntityInput} autoCapitalize='none'></TextInput>
                     </View>
                     <View style={[styles.fieldBox]}>
                         <Text style={styles.labelName}>Requested Date : </Text>
@@ -200,7 +200,7 @@ const Case = () => {
                     />
                     <View style={style.inputContainer}>
                         <Text style={style.labels}>Case ID  :</Text>
-                        <TextInput style={style.inputstyle} autoCapitalize='none'></TextInput>
+                        <TextInput style={style.CaseInput} autoCapitalize='none'></TextInput>
                     </View>
                     <InputDropdown
                         label={"Collection User :"}
@@ -238,7 +238,8 @@ const Case = () => {
                         style={styles.fieldBox}
                     />
 
-                    <InputDropdown
+                    
+                        <InputDropdown
                         label={"Restraint Type :"}
                         value={restraintType}
                         isOpen={isRestraintTypeMenuOpen}
@@ -250,7 +251,7 @@ const Case = () => {
                         textFieldStyle={[styles.textfield, restraintType ? [styles.width50, { paddingLeft: 0 }] : null,]}
                         style={styles.fieldBox}
                     />
-
+                   
                     <InputDropdown
                         label={"Activity Type :"}
                         value={activityLevel}
@@ -331,6 +332,16 @@ const Case = () => {
                     onConfirm={handleConfirmRequestedDate}
                     onCancel={RequestedHideDatePicker}
                 />
+                <TouchableOpacity
+                    style={[style.SaveBtn, { width: "40%" }]}
+                >
+                    <Text style={{ color: Colors.white, fontSize: Colors.lableSize, }} >Save</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={[style.CancelBtn, { width: "40%" }]}
+                >
+                    <Text style={{ color: Colors.white, fontSize: Colors.lableSize, }} >Cancel</Text>
+                </TouchableOpacity>
             </KeyboardAwareScrollView>
         </>
     )
@@ -360,16 +371,48 @@ const style = StyleSheet.create({
         fontSize: Colors.lableSize,
     },
 
-    inputstyle: {
+    EntityInput: {
         position: "relative",
         top: -1,
         left: 0,
         padding: 7,
-        paddingLeft: 130,
-        fontWeight: "bold",
+        paddingLeft: 180,
         width: "100%",
         borderWidth: 0.8,
         borderColor: "#ddd",
+    },
+    CaseInput: {
+        position: "relative",
+        top: -1,
+        left: 0,
+        padding: 7,
+        paddingLeft: 180,
+        width: "100%",
+        borderWidth: 0.9,
+        borderColor: "#ddd",
+
+    },
+    SaveBtn: {
+        position: "relative",
+        top: 55,
+        left: 10,
+        alignItems: "center",
+        backgroundColor: Colors.primary,
+        padding: 10,
+        borderRadius: 20,
+        color: "#fff",
+        marginTop: 15,
+    },
+    CancelBtn: {
+        position: "relative",
+        bottom: 0,
+        left: 180,
+        alignItems: "center",
+        backgroundColor: Colors.primary,
+        padding: 10,
+        borderRadius: 20,
+        color: "#fff",
+        marginTop: 15,
     },
 
 })

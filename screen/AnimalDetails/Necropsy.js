@@ -13,6 +13,7 @@ import AppContext from '../../context/AppContext';
 import {
     getUsers
 } from "../../services/UserManagementServices";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 const Necropsy = () => {
     const context = useContext(AppContext);
     const [showNecropsyDate, setShowNecropsyDate] = useState(false);
@@ -34,7 +35,7 @@ const Necropsy = () => {
     const [isMeasurementsMenuOpen, setIsMeasurementsMenuOpen] = useState(false);
     const [approved, setApproved] = useState("");
     const [isApprovedMenuOpen, setIsApprovedMenuOpen] = useState(false);
-    
+
 
 
     //====this datePicker function is Necropsy ====>
@@ -142,145 +143,157 @@ const Necropsy = () => {
 
     return (
         <>
-            <View>
-                <View style={style.inputContainer}>
-                    <Text style={style.labels}>Necropsy ID  :</Text>
-                    <TextInput style={style.inputstyle} autoCapitalize='none'></TextInput>
+            <KeyboardAwareScrollView extraHeight={"auto"}>
+                <View>
+                    <View style={style.inputContainer}>
+                        <Text style={style.labels}>Necropsy ID  :</Text>
+                        <TextInput style={style.NecropsyInput} autoCapitalize='none'></TextInput>
+                    </View>
+                    <View style={[styles.fieldBox]}>
+                        <Text style={styles.labelName}>Necropsy Date : </Text>
+                        <TouchableOpacity activeOpacity={1} style={{ flexDirection: 'row', alignItems: 'center', width: '50%' }} onPress={() => { ShowNecropsyDatePicker("necropsydob") }}>
+                            <Text style={styles.dateField}>{necropsydob.toDateString()}</Text>
+                            <AntDesign name="calendar" color={Colors.primary} size={20} />
+                        </TouchableOpacity>
+                    </View>
+                    <View style={[styles.fieldBox]}>
+                        <Text style={styles.labelName}>Requested Date : </Text>
+                        <TouchableOpacity activeOpacity={1} style={{ flexDirection: 'row', alignItems: 'center', width: '50%' }} onPress={() => { ShowRequestedDatePicker("requesteddob") }}>
+                            <Text style={styles.dateField}>{requesteddob.toDateString()}</Text>
+                            <AntDesign name="calendar" color={Colors.primary} size={20} />
+                        </TouchableOpacity>
+                    </View>
+                    <InputDropdown
+                        label={"Requested By :"}
+                        items={requesteGroups}
+                        isMandatory={true}
+                        value={requeste}
+                        isOpen={isRequesetedMenuOpen}
+                        openAction={toggleRequestedTypeMenu}
+                        closeAction={toggleRequestedTypeMenu}
+                        setValue={HandleSetRequestedType}
+                        labelStyle={styles.labelName}
+                        textFieldStyle={[styles.textfield, requeste ? [styles.width50, { paddingLeft: 0 }] : null,]}
+                        style={[
+                            styles.fieldBox
+                        ]}
+                    />
+
+                    <InputDropdown
+                        label={"Performed By :"}
+                        items={requesteGroups}
+                        isMandatory={true}
+                        value={performed}
+                        isOpen={isperformedMenuOpen}
+                        openAction={togglePerformedTypeMenu}
+                        closeAction={togglePerformedTypeMenu}
+                        setValue={HandleSetPerformedType}
+                        labelStyle={styles.labelName}
+                        textFieldStyle={[styles.textfield, performed ? [styles.width50, { paddingLeft: 0 }] : null,]}
+                        style={[
+                            styles.fieldBox
+                        ]}
+                    />
+
+                    <InputDropdown
+                        label={"Histopathology :"}
+                        items={Configs.Histopathology}
+                        value={histopathology}
+                        isOpen={isHistopathologyMenuOpen}
+                        openAction={toggleHistopathologyTypeMenu}
+                        closeAction={toggleHistopathologyTypeMenu}
+                        setValue={HandleSetHistopathologyType}
+                        labelStyle={styles.labelName}
+                        textFieldStyle={[styles.textfield, histopathology ? [styles.width50, { paddingLeft: 0 }] : null,]}
+                        style={[
+                            styles.fieldBox
+                        ]}
+                    />
+
+
+                    <InputDropdown
+                        label={"Lab Request :"}
+                        items={Configs.LAB_REQUEST}
+                        value={lebRequest}
+                        isOpen={isLebRequestMenuOpen}
+                        openAction={toggleLebRequestTypeMenu}
+                        closeAction={toggleLebRequestTypeMenu}
+                        setValue={HandleSetLebRequestType}
+                        labelStyle={styles.labelName}
+                        textFieldStyle={[styles.textfield, lebRequest ? [styles.width50, { paddingLeft: 0 }] : null,]}
+                        style={[
+                            styles.fieldBox
+                        ]}
+                    />
+
+                    <InputDropdown
+                        label={"Measurements :"}
+                        items={Configs.Measurements}
+                        value={measurements}
+                        isOpen={isMeasurementsMenuOpen}
+                        openAction={toggleMeasurementsTypeMenu}
+                        closeAction={toggleMeasurementsTypeMenu}
+                        setValue={HandleSetMeasurementsType}
+                        labelStyle={styles.labelName}
+                        textFieldStyle={[styles.textfield, measurements ? [styles.width50, { paddingLeft: 0 }] : null,]}
+                        style={[
+                            styles.fieldBox
+                        ]}
+                    />
+
+                    <View style={style.inputContainer}>
+                        <Text style={style.labels}>Final Diagnosis  :</Text>
+                        <TextInput style={style.FinalInput} autoCapitalize='none'></TextInput>
+                    </View>
+
+                    <View style={style.inputContainer}>
+                        <Text style={style.labels}>Reports  :</Text>
+                        <TextInput style={style.ReportsInput} autoCapitalize='none'></TextInput>
+                    </View>
+
+                    <InputDropdown
+                        label={"Approved By :"}
+                        items={requesteGroups}
+                        isMandatory={true}
+                        value={approved}
+                        isOpen={isApprovedMenuOpen}
+                        openAction={toggleApprovedTypeMenu}
+                        closeAction={toggleApprovedTypeMenu}
+                        setValue={HandleSetApprovedType}
+                        labelStyle={styles.labelName}
+                        textFieldStyle={[styles.textfield, approved ? [styles.width50, { paddingLeft: 0 }] : null,]}
+                        style={[
+                            styles.fieldBox
+                        ]}
+                    />
+
                 </View>
-                <View style={[styles.fieldBox]}>
-                    <Text style={styles.labelName}>Necropsy Date : </Text>
-                    <TouchableOpacity activeOpacity={1} style={{ flexDirection: 'row', alignItems: 'center', width: '50%' }} onPress={() => { ShowNecropsyDatePicker("necropsydob") }}>
-                        <Text style={styles.dateField}>{necropsydob.toDateString()}</Text>
-                        <AntDesign name="calendar" color={Colors.primary} size={20} />
-                    </TouchableOpacity>
-                </View>
-                <View style={[styles.fieldBox]}>
-                    <Text style={styles.labelName}>Requested Date : </Text>
-                    <TouchableOpacity activeOpacity={1} style={{ flexDirection: 'row', alignItems: 'center', width: '50%' }} onPress={() => { ShowRequestedDatePicker("requesteddob") }}>
-                        <Text style={styles.dateField}>{requesteddob.toDateString()}</Text>
-                        <AntDesign name="calendar" color={Colors.primary} size={20} />
-                    </TouchableOpacity>
-                </View>
-                <InputDropdown
-                    label={"Requested By :"}
-                    items={requesteGroups}
-                    isMandatory={true}
-                    value={requeste}
-                    isOpen={isRequesetedMenuOpen}
-                    openAction={toggleRequestedTypeMenu}
-                    closeAction={toggleRequestedTypeMenu}
-                    setValue={HandleSetRequestedType}
-                    labelStyle={styles.labelName}
-                    textFieldStyle={[styles.textfield, requeste ? [styles.width50, { paddingLeft: 0 }] : null,]}
-                    style={[
-                        styles.fieldBox
-                    ]}
+                <DateTimePickerModal
+                    mode={'date'}
+                    display={Platform.OS == 'ios' ? 'inline' : 'default'}
+                    isVisible={showNecropsyDate}
+                    onConfirm={handleConfirmNecropsyDate}
+                    onCancel={NecropsyHideDatePicker}
+                />
+                <DateTimePickerModal
+                    mode={'date'}
+                    display={Platform.OS == 'ios' ? 'inline' : 'default'}
+                    isVisible={showRequestedDate}
+                    onConfirm={handleConfirmRequestedDate}
+                    onCancel={RequestedHideDatePicker}
                 />
 
-                <InputDropdown
-                    label={"Performed By :"}
-                    items={requesteGroups}
-                    isMandatory={true}
-                    value={performed}
-                    isOpen={isperformedMenuOpen}
-                    openAction={togglePerformedTypeMenu}
-                    closeAction={togglePerformedTypeMenu}
-                    setValue={HandleSetPerformedType}
-                    labelStyle={styles.labelName}
-                    textFieldStyle={[styles.textfield,performed ? [styles.width50, { paddingLeft: 0 }] : null,]}
-                    style={[
-                        styles.fieldBox
-                    ]}
-                />
-
-                <InputDropdown
-                    label={"Histopathology :"}
-                    items={Configs.Histopathology}
-                    value={histopathology}
-                    isOpen={isHistopathologyMenuOpen}
-                    openAction={toggleHistopathologyTypeMenu}
-                    closeAction={toggleHistopathologyTypeMenu}
-                    setValue={HandleSetHistopathologyType}
-                    labelStyle={styles.labelName}
-                    textFieldStyle={[styles.textfield, histopathology ? [styles.width50, { paddingLeft: 0 }] : null,]}
-                    style={[
-                        styles.fieldBox
-                    ]}
-                />
-
-
-                <InputDropdown
-                    label={"Lab Request :"}
-                    items={Configs.LAB_REQUEST}
-                    value={lebRequest}
-                    isOpen={isLebRequestMenuOpen}
-                    openAction={toggleLebRequestTypeMenu}
-                    closeAction={toggleLebRequestTypeMenu}
-                    setValue={HandleSetLebRequestType}
-                    labelStyle={styles.labelName}
-                    textFieldStyle={[styles.textfield, lebRequest ? [styles.width50, { paddingLeft: 0 }] : null,]}
-                    style={[
-                        styles.fieldBox
-                    ]}
-                />
-
-                <InputDropdown
-                    label={"Measurements :"}
-                    items={Configs.Measurements}
-                    value={measurements}
-                    isOpen={isMeasurementsMenuOpen}
-                    openAction={toggleMeasurementsTypeMenu}
-                    closeAction={toggleMeasurementsTypeMenu}
-                    setValue={HandleSetMeasurementsType}
-                    labelStyle={styles.labelName}
-                    textFieldStyle={[styles.textfield, measurements ? [styles.width50, { paddingLeft: 0 }] : null,]}
-                    style={[
-                        styles.fieldBox
-                    ]}
-                />
-
-                <View style={style.inputContainer}>
-                    <Text style={style.labels}>Final Diagnosis  :</Text>
-                    <TextInput style={style.inputstyle} autoCapitalize='none'></TextInput>
-                </View>
-
-                <View style={style.inputContainer}>
-                    <Text style={style.labels}>Reports  :</Text>
-                    <TextInput style={style.inputstyle} autoCapitalize='none'></TextInput>
-                </View>
-
-                <InputDropdown
-                    label={"Approved By :"}
-                    items={requesteGroups}
-                    isMandatory={true}
-                    value={approved}
-                    isOpen={isApprovedMenuOpen}
-                    openAction={toggleApprovedTypeMenu}
-                    closeAction={toggleApprovedTypeMenu}
-                    setValue={HandleSetApprovedType}
-                    labelStyle={styles.labelName}
-                    textFieldStyle={[styles.textfield, approved ? [styles.width50, { paddingLeft: 0 }] : null,]}
-                    style={[
-                        styles.fieldBox
-                    ]}
-                />
-
-
-            </View>
-            <DateTimePickerModal
-                mode={'date'}
-                display={Platform.OS == 'ios' ? 'inline' : 'default'}
-                isVisible={showNecropsyDate}
-                onConfirm={handleConfirmNecropsyDate}
-                onCancel={NecropsyHideDatePicker}
-            />
-            <DateTimePickerModal
-                mode={'date'}
-                display={Platform.OS == 'ios' ? 'inline' : 'default'}
-                isVisible={showRequestedDate}
-                onConfirm={handleConfirmRequestedDate}
-                onCancel={RequestedHideDatePicker}
-            />
+                <TouchableOpacity
+                    style={[style.SaveBtn, { width: "40%" }]}
+                >
+                    <Text style={{ color: Colors.white, fontSize: Colors.lableSize, }} >Save</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={[style.CancelBtn, { width: "40%" }]}
+                >
+                    <Text style={{ color: Colors.white, fontSize: Colors.lableSize, }} >Cancel</Text>
+                </TouchableOpacity>
+            </KeyboardAwareScrollView>
         </>
     )
 }
@@ -308,16 +321,49 @@ const style = StyleSheet.create({
         fontSize: Colors.lableSize,
     },
 
-    inputstyle: {
-        position: "relative",
-        top: -1,
-        left: 0,
+    ReportsInput: {
         padding: 7,
-        paddingLeft: 130,
-        fontWeight: "bold",
+        paddingLeft: 180,
         width: "100%",
         borderWidth: 0.8,
         borderColor: "#ddd",
+    },
+    NecropsyInput: {
+        padding: 7,
+        paddingLeft: 185,
+        width: "100%",
+        borderWidth: 0.8,
+        borderColor: "#ddd",
+
+    },
+    FinalInput:{
+        padding: 7,
+        paddingLeft: 180,
+        width: "100%",
+        borderWidth: 0.3,
+        borderColor: "#ddd",        
+    },
+    SaveBtn: {
+        position: "relative",
+        top: 45,
+        left: 15,
+        alignItems: "center",
+        backgroundColor: Colors.primary,
+        padding: 10,
+        borderRadius: 20,
+        color: "#fff",
+        marginTop: 15,
+    },
+    CancelBtn: {
+        position: "relative",
+        bottom: 10,
+        left: 180,
+        alignItems: "center",
+        backgroundColor: Colors.primary,
+        padding: 10,
+        borderRadius: 20,
+        color: "#fff",
+        marginTop: 15,
     },
 })
 
